@@ -6,10 +6,18 @@ GUI is based on PyQt5, and audio playback related functionalities are
 based on GStreamer (pygst). 
 
 ## Installing
-1. Populate station.py with the description and URL of the online radio
+1. Clone the repo
+2. Populate stations.py with the description and URL of the online radio
    station
-2. pip3 install -r requirements.txt
-3. python3 setup.py install
+3. pip3 install -r requirements.txt
+
+Either
+4. python3 setup.py install
+5. qt5radio.py
+
+Or
+
+4. simply run ./qt5radio.py
 
 ## Running
 1. Run the program
@@ -17,7 +25,7 @@ based on GStreamer (pygst).
    command is executed.
 
 ## Limitations
-Program is ditributed in the hope that it will be useful, but WITHOUT
+Program is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY.
 
 ## Screenshot
