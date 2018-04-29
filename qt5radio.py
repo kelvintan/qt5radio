@@ -21,14 +21,18 @@ import sys
 import time
 import os
 
-# Importing own modules
-# reference: binwalk implementaion
-# https://github.com/ReFirmLabs/binwalk/blob/master/src/scripts/binwalk
-_module_path="./"+"stations"
-if os.path.exists(_module_path) and _module_path not in sys.path:
-    sys.path = [_module_path] + sys.path
+from stations.stations import radio_db
 
-from stations import radio_db
+# Trying to find the correct icons directory depending on how you start the program
+file_dir=os.path.dirname(os.path.abspath(__file__))
+if os.path.exists(os.path.join(file_dir, 'icons')):
+    # starting the python script in the source directory
+    icons_dir=os.path.join(file_dir, 'icons')
+else:
+    # starting the python script in system path
+    # __file__: /usr/local/lib/python3.5/dist-packages/qt5radio-0.1-py3.5.egg/EGG-INFO/scripts/qt5radio.py
+    # icons_dir: /usr/local/lib/python3.5/dist-packages/qt5radio-0.1-py3.5.egg/icons
+    icons_dir=os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "icons")
 
 # example of gstream that works
 # reference: https://stackoverflow.com/questions/4689772/gstreamer-record-iradio-mode-artifacts
@@ -51,11 +55,11 @@ class Example(QWidget):
 
         # Source for icons
         # https://icons8.com/icon/set/media-player/all
-        self.app_icon=QIcon("icons/audio-wave-64.png")
-        self.play_icon=QIcon("icons/play-64.png")
-        self.stop_icon=QIcon("icons/stop-64.png")
-        self.rec_icon=QIcon("icons/downloads-64.png")
-        self.mute_icon=QIcon("icons/mute-64.png")
+        self.app_icon=QIcon(icons_dir+"/audio-wave-64.png")
+        self.play_icon=QIcon(icons_dir+"/play-64.png")
+        self.stop_icon=QIcon(icons_dir+"/stop-64.png")
+        self.rec_icon=QIcon(icons_dir+"/downloads-64.png")
+        self.mute_icon=QIcon(icons_dir+"/mute-64.png")
 
         # control volume, should be between 1.0 to 10.0
         self.volMultiple=5.0 
